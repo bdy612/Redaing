@@ -1,0 +1,75 @@
+body {
+font-family: 'Open Sans', sans-serif; /* Using a more modern, web-safe font */
+margin: 0; /* Remove default browser margins */
+padding: 20px;
+background-color: #f4f4f4; /* Lighter background for better contrast */
+color: #444;
+display: flex; 
+overflow-x: auto;/* Text color */
+}
+
+.image-container {
+flex: 0 0 30%;
+padding: 20px;
+background-color: #f8f8f8;
+overflow-y: auto;
+position: sticky; /* Make the image container sticky */
+top: 20px;
+height: calc(100vh - 40px);
+}
+
+.text-container {
+flex: 0 0 70%; /* 70% width for text */
+padding: 20px;
+}
+
+h1 {
+text-align: center;
+color: #3e4444;
+margin-bottom: 30px;
+font-size: 2.5rem;
+line-height: 1.2;
+}
+
+p {
+text-indent: 20px;
+line-height: 1.6;
+margin-bottom: 1.5rem;
+cursor: pointer;
+color: #555;
+}
+
+.highlight {
+font-weight: bold;
+color: #007bff;
+}
+
+.hero-image {
+width: 100%;
+max-width: 800px; /* Increased max-width for larger images */
+margin: 20px auto;
+display: block;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.hero-image:hover {
+transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+#read{
+width: 99%;
+}
+#ttsButton{
+margin-top: 20px;
+width: 99%;
+}
+a{
+    text-decoration: none;
+    color: rgb(117, 207, 237);
+}
+a:hover{
+    text-decoration: none;
+    color: lightblue;
+}
