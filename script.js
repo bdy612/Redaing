@@ -1,26 +1,56 @@
 const button = document.getElementById('ttsButton');
-const back = document.getElementById('read');
+const readButton = document.getElementById('read'); // Corrected ID
 let isSpeaking = false;
+let currentParagraph = null; 
 let utterance = new SpeechSynthesisUtterance();
 
-button.addEventListener('click', () => {
-    if (isSpeaking) {
+const paragraphs = document.querySelectorAll('p');
+
+paragraphs.forEach(paragraph => {
+  paragraph.addEventListener('click', () => {
+    if (isSpeaking && currentParagraph === paragraph) { 
       window.speechSynthesis.cancel();
       isSpeaking = false;
       button.textContent = "Start reading";
-    } else {
-      window.speechSynthesis.speak(utterance);
-      isSpeaking = true;
-      button.textContent = "Stop reading";
+      currentParagraph = null; 
+      return; 
     }
+
+    if (isSpeaking) {
+      window.speechSynthesis.cancel(); 
+    }
+
+    currentParagraph = paragraph; 
+    utterance = new SpeechSynthesisUtterance(paragraph.textContent);
+    window.speechSynthesis.speak(utterance);
+    isSpeaking = true;
+    button.textContent = "Stop reading"; 
   });
+});
 
-  function change_speak(boolo){
-      isSpeaking = boolo;
+button.addEventListener('click', () => {
+  if (isSpeaking) {
+    window.speechSynthesis.cancel();
+    isSpeaking = false;
+    button.textContent = "Start reading"; 
+  } else {
+    utterance = new SpeechSynthesisUtterance(
+      Array.from(paragraphs, p => p.textContent).join(' ')
+    );
+    window.speechSynthesis.speak(utterance);
+    isSpeaking = true;
+    button.textContent = "Stop reading"; 
   }
+});
 
-  back.addEventListener('click', change_speak(false))
+readButton.addEventListener('click', () => { 
+  if (isSpeaking) {
+    window.speechSynthesis.cancel();
+    isSpeaking = false;
+    button.textContent = "Start reading"; 
+  }
+});
 
-  window.speechSynthesis.onvoiceschanged = () => {
-    utterance.voice = window.speechSynthesis.getVoices()[0]; 
-  };
+window.speechSynthesis.onvoiceschanged = () => {
+  utterance.voice = window.speechSynthesis.getVoices()[0];
+};
