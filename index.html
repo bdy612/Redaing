@@ -55,8 +55,14 @@
         <br>
         <br>
         <a href="story3.html">The Super CaveMan</a>
-        <script>
+        <h1 id="thankser">
             
+        </h1>
+        <script>
+            var data = localStorge("thanks")
+            if (data){
+                document.getElementById("thankser").innerHTML = "Thanks for entering on one of our websites"
+            }
         </script>
     </body>
 </html>
